@@ -12,17 +12,17 @@ TEMPLATE = app
 INCLUDEPATH += /usr/include/poppler/qt4
 LIBS += -lpoppler -lpoppler-qt4
 
-SOURCES += main.cc\
-		mainwindow.cc \
-	documentfactory.cc \
-	popplerdocument.cc
+SOURCES += src/main.cc\
+		src/mainwindow.cc \
+	src/documentfactory.cc \
+	src/popplerdocument.cc
 
-HEADERS  += mainwindow.hh \
-	idocument.hh \
-	documentfactory.hh \
-	popplerdocument.hh
+HEADERS  += src/mainwindow.hh \
+	src/idocument.hh \
+	src/documentfactory.hh \
+	src/popplerdocument.hh
 
-FORMS    += mainwindow.ui
+FORMS    += src/mainwindow.ui
 
 
 
