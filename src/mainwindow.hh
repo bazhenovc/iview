@@ -14,6 +14,8 @@ public:
 	explicit
 	MainWindow(QWidget *parent = 0);
 
+	void openDocument(const QString& path);
+
 private slots:
 	void on_actionOpen_triggered();
 

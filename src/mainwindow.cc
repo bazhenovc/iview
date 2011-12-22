@@ -22,6 +22,23 @@ MainWindow::MainWindow(QWidget *parent)
 	scale = 1.0f;
 }
 
+void MainWindow::openDocument(const QString &path)
+{
+	if (document && document != &emptyDocument)
+	{
+		delete document;
+		document = &emptyDocument;
+	}
+	iDocument* newDocument = DocumentFactory::openDocument(path);
+	if (newDocument)
+	{
+		document = newDocument;
+		ui.label->setPixmap(document->renderPage(0, physicalDpiX(), physicalDpiY()));
+		currentPage = 0;
+		statusBarLabel->setText("Page: 0");
+	}
+}
+
 void MainWindow::on_actionOpen_triggered()
 {
 	QString path = QFileDialog::getOpenFileName(this, "Select document",
@@ -29,14 +46,7 @@ void MainWindow::on_actionOpen_triggered()
 												"PDF files (*.pdf)");
 	if (path != "")
 	{
-		iDocument* newDocument = DocumentFactory::openDocument(path);
-		if (newDocument)
-		{
-			document = newDocument;
-			ui.label->setPixmap(document->renderPage(0, physicalDpiX(), physicalDpiY()));
-			currentPage = 0;
-			statusBarLabel->setText("Page: 0");
-		}
+		openDocument(path);
 	}
 }
 
